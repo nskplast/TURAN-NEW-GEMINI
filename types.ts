@@ -1,3 +1,4 @@
+
 export type ProductCategory = 'PET Strap' | 'Stretch Film' | 'Boxes' | 'Tools' | 'Consumables';
 
 export interface Product {
@@ -5,6 +6,7 @@ export interface Product {
   name: string;
   name_ru?: string;
   category: ProductCategory;
+  subcategory?: string;
   imageUrl: string;
   description: string;
   description_ru?: string;

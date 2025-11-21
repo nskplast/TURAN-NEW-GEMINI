@@ -10,7 +10,9 @@ interface Location {
   city_ru: string;
   address: string;
   address_ru: string;
-  embedSrc: string;
+  lat: number;
+  lng: number;
+  zoom: number;
   type: 'hq' | 'warehouse';
 }
 
@@ -23,8 +25,9 @@ const LOCATIONS: Location[] = [
     city_ru: 'г. Мары, Туркменистан',
     address: 'Industrial Zone, Sector 4',
     address_ru: 'Промышленная зона, Сектор 4',
-    // Yandex Map for Mary, Turkmenistan
-    embedSrc: 'https://yandex.ru/map-widget/v1/?ll=61.833300%2C37.600000&z=12&pt=61.833300%2C37.600000,pm2rdm',
+    lat: 37.600000,
+    lng: 61.833300,
+    zoom: 12,
     type: 'hq'
   },
   {
@@ -35,8 +38,9 @@ const LOCATIONS: Location[] = [
     city_ru: 'г. Новосибирск, Россия',
     address: 'ul. Mira 63a/1, Office 5',
     address_ru: 'ул. Мира 63а/1, оф. 5',
-    // Yandex Map for Novosibirsk, Mira 63a/1
-    embedSrc: 'https://yandex.ru/map-widget/v1/?ll=82.930050%2C54.965830&z=17&pt=82.930050%2C54.965830,pm2rdm',
+    lat: 54.964342,
+    lng: 82.926046,
+    zoom: 17,
     type: 'hq'
   },
   {
@@ -47,8 +51,9 @@ const LOCATIONS: Location[] = [
     city_ru: 'г. Новосибирск, Россия',
     address: 'Tolmachevskoye Shosse, 21',
     address_ru: 'Толмачевское шоссе, 21',
-    // Yandex Map for Novosibirsk, Tolmachevskoye Shosse 21
-    embedSrc: 'https://yandex.ru/map-widget/v1/?ll=82.823085%2C54.995850&z=16&pt=82.823085%2C54.995850,pm2rdm',
+    lat: 54.955430,
+    lng: 82.824656,
+    zoom: 16,
     type: 'warehouse'
   },
   {
@@ -57,10 +62,11 @@ const LOCATIONS: Location[] = [
     name_ru: 'Склад 2 (Гофротара)',
     cityKey: 'Novosibirsk, Russia',
     city_ru: 'г. Новосибирск, Россия',
-    address: 'ul. Sibiryakov-Gvardeyscev, 49B',
-    address_ru: 'ул. Сибиряков-Гвардейцев, 49Б',
-    // Yandex Map for Novosibirsk, Sibiryakov-Gvardeyscev 49B
-    embedSrc: 'https://yandex.ru/map-widget/v1/?ll=82.920175%2C54.961470&z=16&pt=82.920175%2C54.961470,pm2rdm',
+    address: 'ul. Sibiryakov-Gvardeyscev, 49B, bldg 12',
+    address_ru: 'ул. Сибиряков-Гвардейцев, 49Б, к12',
+    lat: 54.951404,
+    lng: 82.916311,
+    zoom: 16,
     type: 'warehouse'
   }
 ];
@@ -74,6 +80,15 @@ const Contact: React.FC = () => {
   const getName = (loc: Location) => language === 'ru' ? loc.name_ru : loc.nameKey;
   const getCity = (loc: Location) => language === 'ru' ? loc.city_ru : loc.cityKey;
   const getAddress = (loc: Location) => language === 'ru' ? loc.address_ru : loc.address;
+
+  // Dynamic URL generation to support language parameter
+  const getMapSrc = (loc: Location) => {
+    // ll = longitude, latitude
+    // pt = longitude, latitude, style (pm2rdm = red pin)
+    // lang = ru_RU for Russian map tiles/labels, en_US for English
+    const langParam = language === 'ru' ? 'ru_RU' : 'en_US';
+    return `https://yandex.ru/map-widget/v1/?ll=${loc.lng}%2C${loc.lat}&z=${loc.zoom}&pt=${loc.lng}%2C${loc.lat},pm2rdm&lang=${langParam}`;
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 animate-fade-in">
@@ -130,12 +145,12 @@ const Contact: React.FC = () => {
                 {/* Interactive Map Iframe */}
                 <div className="w-full h-[500px] bg-slate-100 relative border-b border-slate-200">
                     <iframe 
-                        key={activeLocation.id} 
+                        key={`${activeLocation.id}-${language}`}
                         width="100%" 
                         height="100%" 
                         frameBorder="0" 
                         scrolling="no" 
-                        src={activeLocation.embedSrc}
+                        src={getMapSrc(activeLocation)}
                         title={`Map of ${getName(activeLocation)}`}
                         className="filter grayscale contrast-125 hover:grayscale-0 transition-all duration-500"
                         allowFullScreen

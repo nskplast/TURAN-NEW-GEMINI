@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import { ProductCategory } from '../types';
@@ -6,14 +7,30 @@ import { ArrowRight, Package } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const CATEGORIES: ProductCategory[] = ['PET Strap', 'Stretch Film', 'Boxes', 'Tools', 'Consumables'];
+const SUBCATEGORIES: Record<string, string[]> = {
+  'PET Strap': ['embossed', 'smooth'],
+  'Stretch Film': ['manual', 'machine'],
+  'Boxes': ['4-flap', 'food', 'self-assembling', 'sheets'],
+  'Tools': ['battery', 'pneumatic', 'manual']
+};
 
 const ProductCatalog: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | 'All'>('All');
+  const [activeSubCategory, setActiveSubCategory] = useState<string>('all');
   const { t, language } = useLanguage();
 
-  const filteredProducts = activeCategory === 'All' 
-    ? PRODUCTS 
-    : PRODUCTS.filter(p => p.category === activeCategory);
+  // Reset subcategory when category changes
+  useEffect(() => {
+    setActiveSubCategory('all');
+  }, [activeCategory]);
+
+  const filteredProducts = PRODUCTS.filter(p => {
+    const catMatch = activeCategory === 'All' || p.category === activeCategory;
+    if (!catMatch) return false;
+    
+    if (activeSubCategory === 'all') return true;
+    return p.subcategory === activeSubCategory;
+  });
 
   const getCategoryLabel = (cat: ProductCategory) => {
       switch(cat) {
@@ -24,6 +41,11 @@ const ProductCatalog: React.FC = () => {
           case 'Consumables': return t('cat.consumables');
           default: return cat;
       }
+  };
+
+  const getSubCategoryLabel = (sub: string) => {
+    if (sub === 'all') return t('subcat.all');
+    return t(`subcat.${sub}` as any);
   };
 
   return (
@@ -65,6 +87,35 @@ const ProductCatalog: React.FC = () => {
           ))}
         </div>
 
+        {/* Subcategories (if applicable) */}
+        {activeCategory !== 'All' && SUBCATEGORIES[activeCategory] && (
+           <div className="flex flex-wrap justify-center gap-4 mb-8 -mt-8 animate-fade-in">
+              <button 
+                onClick={() => setActiveSubCategory('all')}
+                className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all border ${
+                   activeSubCategory === 'all'
+                     ? 'bg-orange-600 text-white border-orange-600'
+                     : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
+                }`}
+              >
+                 {getSubCategoryLabel('all')}
+              </button>
+              {SUBCATEGORIES[activeCategory].map(sub => (
+                 <button 
+                    key={sub}
+                    onClick={() => setActiveSubCategory(sub)}
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all border ${
+                       activeSubCategory === sub
+                         ? 'bg-orange-600 text-white border-orange-600'
+                         : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
+                    }`}
+                 >
+                    {getSubCategoryLabel(sub)}
+                 </button>
+              ))}
+           </div>
+        )}
+
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
@@ -82,6 +133,11 @@ const ProductCatalog: React.FC = () => {
                 <div className="absolute top-0 left-0 bg-slate-900/80 text-white px-4 py-2 text-xs font-bold uppercase backdrop-blur-sm">
                   {getCategoryLabel(product.category)}
                 </div>
+                {product.subcategory && (
+                    <div className="absolute bottom-0 right-0 bg-orange-600 text-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
+                        {getSubCategoryLabel(product.subcategory)}
+                    </div>
+                )}
               </div>
               
               <div className="p-6 flex-grow flex flex-col">
