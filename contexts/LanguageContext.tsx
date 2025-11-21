@@ -1,0 +1,194 @@
+import React, { createContext, useState, useContext, ReactNode } from 'react';
+
+export type Language = 'en' | 'ru';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: keyof typeof translations.en) => string;
+}
+
+const translations = {
+  en: {
+    'nav.home': 'Home',
+    'nav.products': 'Products',
+    'nav.production': 'Production',
+    'nav.company': 'Company',
+    'nav.news': 'News',
+    'nav.contacts': 'Contacts',
+    'btn.ai': 'AI Consultant',
+    'btn.quote': 'Get Quote',
+    'hero.badge': 'Russian-Turkmen Joint Venture',
+    'hero.title1': 'Advanced Packaging',
+    'hero.title2': 'Manufacturing',
+    'hero.desc': 'Full-cycle production of PET strapping and industrial packaging materials. Direct from our factory in Turkmenistan to your warehouse in Russia and Europe.',
+    'hero.btn_products': 'View Products',
+    'hero.btn_contact': 'Contact Sales',
+    'stats.quality': 'Quality Control',
+    'stats.quality_desc': 'ISO 9001 Certified manufacturing process with lab testing.',
+    'stats.logistics': 'Global Logistics',
+    'stats.logistics_desc': 'Strategic warehouses in Novosibirsk for rapid RU/EU delivery.',
+    'stats.pricing': 'Direct Pricing',
+    'stats.pricing_desc': 'No intermediaries. Factory direct pricing for bulk partners.',
+    'intro.title': 'Reliable Load Securement',
+    'intro.desc': 'TuranPET specializes in high-tensile PET strapping that outperforms steel in safety and elasticity. Whether you are securing lumber, bricks, or corrugated bales, our engineered polymers ensure your cargo arrives intact.',
+    'catalog.title': 'Product Catalog',
+    'catalog.subtitle': 'High-performance packaging solutions engineered for industrial applications. Browse our inventory of strapping, films, and tools.',
+    'catalog.all': 'All Products',
+    'catalog.view': 'View Details',
+    'catalog.empty': 'No products found.',
+    'prod.title': 'Full Cycle Production',
+    'prod.subtitle': 'From raw bottle to secured load',
+    'prod.step1': 'Sourcing & Sorting',
+    'prod.step1_desc': 'We collect post-consumer PET bottles. Advanced optical sorters remove contaminants and non-PET materials.',
+    'prod.step2': 'Washing & Flaking',
+    'prod.step2_desc': 'Bottles are crushed into flakes and undergo a rigorous hot wash process to remove glues and labels.',
+    'prod.step3': 'Extrusion',
+    'prod.step3_desc': 'Flakes are melted at 260°C. The polymer is stretched to align molecules, creating high-tensile strength.',
+    'prod.step4': 'Embossing & Winding',
+    'prod.step4_desc': 'Strap is embossed for grip, cooled, and wound onto coils. Every coil is tested before packaging.',
+    'prod.lab_title': 'Laboratory Control',
+    'prod.lab_desc': 'Our manufacturing plant in Mary is equipped with a state-of-the-art laboratory. We do not rely on third-party certification alone; we test every shift.',
+    'about.title': 'About TuranPET',
+    'about.subtitle': 'A modern Russian-Turkmen enterprise setting new standards in industrial packaging manufacturing.',
+    'about.h2': 'Bridging Borders, Securing Cargo.',
+    'about.p1': 'Founded as a strategic joint venture, TuranPET leverages the rich petrochemical resources of Turkmenistan and the logistical expertise of Russia. Our mission is to provide the Eurasian market with premium quality PET strapping and packaging materials at factory-direct prices.',
+    'about.p2': 'Our production facility in Mary, Turkmenistan, operates a full-cycle recycling and extrusion process. We collect post-consumer PET bottles, process them into high-grade flakes (Hot Washed), and extrude them into strapping that meets ASTM and AAR standards.',
+    'about.founded': 'Year Founded',
+    'about.output': 'Monthly Output',
+    'contact.title': 'Contact Us',
+    'contact.subtitle': 'Our logistics team is ready to assist you. Select a location below to view on map.',
+    'contact.sales': 'Sales Department',
+    'contact.sales_desc': 'Call us for quotes and technical consultation.',
+    'contact.working_hours': 'Working Hours',
+    'contact.mon_fri': 'Mon - Fri',
+    'contact.sat': 'Saturday',
+    'contact.sun': 'Sunday',
+    'contact.closed': 'Closed',
+    'contact.production_hq': 'Production & HQ',
+    'contact.warehouses': 'Warehouses',
+    'blog.title': 'News & Insights',
+    'blog.subtitle': 'Updates from our production lines and the packaging industry.',
+    'blog.read_more': 'Read More',
+    'footer.desc': 'Full cycle manufacturer of PET strapping and packaging materials. Russian-Turkmen joint venture delivering quality since 2015.',
+    'footer.rights': '© 2024 TuranPET Industrial Solutions. All rights reserved.',
+    'cat.pet': 'PET Strap',
+    'cat.film': 'Stretch Film',
+    'cat.boxes': 'Boxes',
+    'cat.tools': 'Tools',
+    'cat.consumables': 'Consumables',
+    'detail.back': 'Back to Catalog',
+    'detail.quality': 'Quality Guaranteed',
+    'detail.quality_sub': 'ISO 9001 Certified Production',
+    'detail.shipping': 'Bulk Shipping',
+    'detail.shipping_sub': 'Direct from Novosibirsk warehouse',
+    'detail.specs': 'Technical Specifications',
+    'detail.availability': 'Availability',
+    'detail.instock': 'In Stock',
+    'detail.req_quote': 'Request Quote',
+    'detail.moq': 'Minimum order quantity applies for wholesale pricing.'
+  },
+  ru: {
+    'nav.home': 'Главная',
+    'nav.products': 'Продукция',
+    'nav.production': 'Производство',
+    'nav.company': 'О компании',
+    'nav.news': 'Блог',
+    'nav.contacts': 'Контакты',
+    'btn.ai': 'AI Консультант',
+    'btn.quote': 'Заказать',
+    'hero.badge': 'Российско-Туркменское СП',
+    'hero.title1': 'Производство',
+    'hero.title2': 'Упаковки',
+    'hero.desc': 'Полный цикл производства ПЭТ-ленты и упаковочных материалов. Прямые поставки с завода в Туркменистане на ваш склад в России и Европе.',
+    'hero.btn_products': 'Каталог',
+    'hero.btn_contact': 'Связаться',
+    'stats.quality': 'Контроль Качества',
+    'stats.quality_desc': 'Производство сертифицировано ISO 9001. Собственная лаборатория.',
+    'stats.logistics': 'Логистика',
+    'stats.logistics_desc': 'Склады в Новосибирске для быстрой доставки по РФ и СНГ.',
+    'stats.pricing': 'Прямые Цены',
+    'stats.pricing_desc': 'Без посредников. Заводские цены для оптовых партнеров.',
+    'intro.title': 'Надежная Фиксация Груза',
+    'intro.desc': 'TuranPET специализируется на высокопрочной ПЭТ-ленте, превосходящей стальную по безопасности и эластичности. Будь то пиломатериалы, кирпич или прессованная макулатура, наши полимеры гарантируют сохранность вашего груза.',
+    'catalog.title': 'Каталог Продукции',
+    'catalog.subtitle': 'Высокоэффективные упаковочные решения для промышленности. ПЭТ-лента, стрейч-пленка и инструмент.',
+    'catalog.all': 'Вся продукция',
+    'catalog.view': 'Подробнее',
+    'catalog.empty': 'Товары не найдены.',
+    'prod.title': 'Полный Цикл Производства',
+    'prod.subtitle': 'От пластиковой бутылки до надежной ленты',
+    'prod.step1': 'Сбор и Сортировка',
+    'prod.step1_desc': 'Мы собираем использованные ПЭТ-бутылки. Оптические сортировщики удаляют примеси.',
+    'prod.step2': 'Мойка и Дробление',
+    'prod.step2_desc': 'Бутылки дробятся во флексу и проходят горячую мойку для удаления клея и этикеток.',
+    'prod.step3': 'Экструзия',
+    'prod.step3_desc': 'Флекса плавится при 260°C. Полимер вытягивается для ориентации молекул и прочности.',
+    'prod.step4': 'Тиснение и Намотка',
+    'prod.step4_desc': 'Нанесение тиснения (emboss), охлаждение и намотка в бухты. Контроль каждой партии.',
+    'prod.lab_title': 'Лабораторный Контроль',
+    'prod.lab_desc': 'Наш завод в г. Мары оснащен современной лабораторией. Мы тестируем каждую смену на разрывную нагрузку и удлинение.',
+    'about.title': 'О компании TuranPET',
+    'about.subtitle': 'Современное Российско-Туркменское предприятие, задающее стандарты качества.',
+    'about.h2': 'Объединяя границы, сохраняя груз.',
+    'about.p1': 'Основанное как стратегическое совместное предприятие, TuranPET использует богатые нефтехимические ресурсы Туркменистана и логистический опыт России. Наша миссия — обеспечить рынок Евразии ПЭТ-лентой высшего качества по ценам завода-производителя.',
+    'about.p2': 'Наше производство в г. Мары (Туркменистан) осуществляет полный цикл переработки. Мы производим ленту из 100% переработанного сырья, соответствующую стандартам ASTM и AAR.',
+    'about.founded': 'Основание',
+    'about.output': 'Ежемесячный объем',
+    'contact.title': 'Контакты',
+    'contact.subtitle': 'Наша команда логистики готова помочь. Выберите локацию на карте.',
+    'contact.sales': 'Отдел Продаж',
+    'contact.sales_desc': 'Звоните для расчета стоимости и консультаций.',
+    'contact.working_hours': 'Часы Работы',
+    'contact.mon_fri': 'Пн - Пт',
+    'contact.sat': 'Суббота',
+    'contact.sun': 'Воскресенье',
+    'contact.closed': 'Выходной',
+    'contact.production_hq': 'Производство и Офис',
+    'contact.warehouses': 'Склады',
+    'blog.title': 'Новости и Блог',
+    'blog.subtitle': 'Обновления производства и новости индустрии упаковки.',
+    'blog.read_more': 'Читать далее',
+    'footer.desc': 'Производитель полного цикла ПЭТ-ленты и упаковки. Российско-Туркменское качество с 2015 года.',
+    'footer.rights': '© 2024 TuranPET Industrial Solutions. Все права защищены.',
+    'cat.pet': 'ПЭТ Лента',
+    'cat.film': 'Стрейч-пленка',
+    'cat.boxes': 'Коробки',
+    'cat.tools': 'Инструмент',
+    'cat.consumables': 'Расходники',
+    'detail.back': 'Назад в каталог',
+    'detail.quality': 'Гарантия Качества',
+    'detail.quality_sub': 'Сертификация ISO 9001',
+    'detail.shipping': 'Оптовые Поставки',
+    'detail.shipping_sub': 'Прямо со склада в Новосибирске',
+    'detail.specs': 'Характеристики',
+    'detail.availability': 'Наличие',
+    'detail.instock': 'В наличии',
+    'detail.req_quote': 'Запросить цену',
+    'detail.moq': 'Действуют минимальные партии для опта.'
+  }
+};
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>('ru'); // Default to Russian given the context
+
+  const t = (key: keyof typeof translations.en) => {
+    return translations[language][key] || translations['en'][key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
