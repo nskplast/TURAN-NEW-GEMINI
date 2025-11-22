@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 export type Language = 'en' | 'ru';
@@ -49,6 +48,8 @@ const translations = {
     'subcat.sheets': 'Sheets & Rolls',
     'subcat.battery': 'Battery Tools',
     'subcat.pneumatic': 'Pneumatic Tools',
+    'subcat.buckles': 'Wire Buckles',
+    'subcat.seals': 'Metal Seals',
     'prod.title': 'Full Cycle Production',
     'prod.subtitle': 'From raw bottle to secured load',
     'prod.step1': 'Sourcing & Sorting',
@@ -139,6 +140,8 @@ const translations = {
     'subcat.sheets': 'Листы/Рулоны',
     'subcat.battery': 'Аккумуляторный',
     'subcat.pneumatic': 'Пневматический',
+    'subcat.buckles': 'Пряжки',
+    'subcat.seals': 'Скобы',
     'prod.title': 'Полный Цикл Производства',
     'prod.subtitle': 'От пластиковой бутылки до надежной ленты',
     'prod.step1': 'Сбор и Сортировка',

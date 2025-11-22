@@ -1,6 +1,5 @@
-
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import { ProductCategory } from '../types';
 import { ArrowRight, Package } from 'lucide-react';
@@ -11,18 +10,22 @@ const SUBCATEGORIES: Record<string, string[]> = {
   'PET Strap': ['embossed', 'smooth'],
   'Stretch Film': ['manual', 'machine'],
   'Boxes': ['4-flap', 'food', 'self-assembling', 'sheets'],
-  'Tools': ['battery', 'pneumatic', 'manual']
+  'Tools': ['battery', 'pneumatic', 'manual'],
+  'Consumables': ['buckles', 'seals']
 };
 
 const ProductCatalog: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<ProductCategory | 'All'>('All');
-  const [activeSubCategory, setActiveSubCategory] = useState<string>('all');
+  const location = useLocation();
   const { t, language } = useLanguage();
 
-  // Reset subcategory when category changes
-  useEffect(() => {
-    setActiveSubCategory('all');
-  }, [activeCategory]);
+  // Initialize state from navigation state if available (returning from detail page)
+  // or default to 'All' / 'all'
+  const [activeCategory, setActiveCategory] = useState<ProductCategory | 'All'>(
+    (location.state as any)?.category || 'All'
+  );
+  const [activeSubCategory, setActiveSubCategory] = useState<string>(
+    (location.state as any)?.subcategory || 'all'
+  );
 
   const filteredProducts = PRODUCTS.filter(p => {
     const catMatch = activeCategory === 'All' || p.category === activeCategory;
@@ -48,6 +51,17 @@ const ProductCatalog: React.FC = () => {
     return t(`subcat.${sub}` as any);
   };
 
+  // Helper to format price based on currency
+  const formatPrice = (price: number) => {
+    if (language === 'ru') {
+      return `от ${price.toLocaleString('ru-RU')} ₽`;
+    } else {
+      // Approximate conversion RUB to USD (e.g., / 92)
+      const usdPrice = (price / 92).toFixed(2);
+      return `$${usdPrice}`;
+    }
+  };
+
   return (
     <div className="py-12 bg-slate-50 min-h-screen animate-fade-in">
       <div className="container mx-auto px-4">
@@ -63,7 +77,10 @@ const ProductCatalog: React.FC = () => {
         {/* Filter Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           <button
-            onClick={() => setActiveCategory('All')}
+            onClick={() => {
+              setActiveCategory('All');
+              setActiveSubCategory('all');
+            }}
             className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-sm transition-all ${
               activeCategory === 'All' 
                 ? 'bg-emerald-700 text-white shadow-lg' 
@@ -75,7 +92,10 @@ const ProductCatalog: React.FC = () => {
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => {
+                setActiveCategory(cat);
+                setActiveSubCategory('all');
+              }}
               className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-sm transition-all ${
                 activeCategory === cat 
                   ? 'bg-emerald-700 text-white shadow-lg' 
@@ -122,6 +142,10 @@ const ProductCatalog: React.FC = () => {
             <Link 
               to={`/products/${product.id}`} 
               key={product.id} 
+              state={{ 
+                prevCategory: activeCategory, 
+                prevSubCategory: activeSubCategory 
+              }}
               className="group bg-white border border-slate-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col"
             >
               <div className="relative h-64 overflow-hidden bg-slate-100">
@@ -161,7 +185,7 @@ const ProductCatalog: React.FC = () => {
                 <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
                   {product.price && (
                     <div className="text-lg font-bold text-slate-900">
-                      {language === 'ru' ? `от ${product.price} ₽` : `$${product.price}`}
+                      {formatPrice(product.price)}
                     </div>
                   )}
                   <div className={`flex items-center text-emerald-700 font-bold text-sm group-hover:translate-x-2 transition-transform ${!product.price ? 'ml-auto' : ''}`}>

@@ -1,11 +1,12 @@
 import React from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate, useLocation } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import { Check, ArrowLeft, ShieldCheck, Truck } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const product = PRODUCTS.find(p => p.id === id);
   const { t, language } = useLanguage();
 
@@ -13,9 +14,28 @@ const ProductDetail: React.FC = () => {
     return <Navigate to="/catalog" />;
   }
 
+  // Determine the state to pass back to catalog
+  // If user came from catalog, use those filters. 
+  // If direct link, default to the product's category and 'all' (or specific subcategory if you prefer)
+  const backState = location.state as { prevCategory?: string; prevSubCategory?: string } | null;
+  
+  const returnCategory = backState?.prevCategory || product.category;
+  const returnSubCategory = backState?.prevSubCategory || 'all';
+
   const displayName = language === 'ru' && product.name_ru ? product.name_ru : product.name;
   const displayDesc = language === 'ru' && product.fullDescription_ru ? product.fullDescription_ru : (product.fullDescription || product.description);
   const displaySpecs = language === 'ru' && product.specs_ru ? product.specs_ru : product.specs;
+
+  // Helper to format price based on currency
+  const formatPrice = (price: number) => {
+    if (language === 'ru') {
+      return `${price.toLocaleString('ru-RU')} ₽`;
+    } else {
+      // Approximate conversion RUB to USD (e.g., / 92)
+      const usdPrice = (price / 92).toFixed(2);
+      return `$${usdPrice}`;
+    }
+  };
 
   return (
     <div className="bg-white min-h-screen animate-fade-in pb-20">
@@ -29,7 +49,11 @@ const ProductDetail: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <Link to="/catalog" className="inline-flex items-center text-slate-500 hover:text-emerald-700 mb-8 transition-colors">
+        <Link 
+          to="/catalog" 
+          state={{ category: returnCategory, subcategory: returnSubCategory }}
+          className="inline-flex items-center text-slate-500 hover:text-emerald-700 mb-8 transition-colors"
+        >
             <ArrowLeft size={18} className="mr-2"/> {t('detail.back')}
         </Link>
 
@@ -66,8 +90,8 @@ const ProductDetail: React.FC = () => {
                 
                 {product.price && (
                   <div className="text-3xl font-bold text-orange-600 mb-6">
-                     {language === 'ru' ? `${product.price} ₽` : `$${product.price}`}
-                     <span className="text-sm text-slate-400 font-normal ml-2">/ {language === 'ru' ? 'шт' : 'pc'}</span>
+                     {formatPrice(product.price)}
+                     <span className="text-sm text-slate-400 font-normal ml-2">/ {language === 'ru' ? 'бухта' : 'coil'}</span>
                   </div>
                 )}
 
