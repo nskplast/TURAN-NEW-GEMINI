@@ -403,7 +403,8 @@ export const PRODUCTS: Product[] = [
     inStock: true 
   },
 
-  // --- PET STRAP (Smooth - NEW FULL LIST) ---
+  // --- PET STRAP (Smooth) ---
+  // 9mm Series
   { 
     id: 'pet-9-06-sm', 
     name: 'PET Strap 9.0x0.6mm 3400m Smooth', 
@@ -460,6 +461,7 @@ export const PRODUCTS: Product[] = [
     specs_ru: { 'Размер': '9,5х0,65мм', 'Намотка': '2800м', 'Разрывная нагрузка': '270 кгс', 'Шпуля': '406мм' },
     inStock: true 
   },
+  // 10-12mm Series
   { 
     id: 'pet-105-052-sm', 
     name: 'PET Strap 10.5x0.52mm 3350m Smooth', 
@@ -1130,50 +1132,50 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'tool-manual-h36',
-    name: 'Sealer H-36 (12-16mm)',
-    name_ru: 'Клещи H-36 (12-16мм)',
+    name: 'Sealer H-36 (16mm)',
+    name_ru: 'Клещи H-36 для ПЭТ 15-16 мм',
     category: 'Tools',
     subcategory: 'manual',
     imageUrl: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80',
-    description: 'Heavy duty sealer for metal seals.',
-    description_ru: 'Усиленные клещи для металлических скоб.',
-    fullDescription: 'Professional long-handled sealer providing maximum leverage for crushing serrated seals onto PET/PP strapping. Essential for heavy loads.',
-    fullDescription_ru: 'Профессиональные клещи с длинными рукоятками (460мм) для зажима металлических скоб. Предназначены для ПЭТ и ПП лент.',
-    price: 7200.00,
-    specs: { 'Strap Width': '12-16mm', 'Handle Length': '460mm', 'Weight': '2.4 kg', 'Seal Type': 'Metal Seal' },
-    specs_ru: { 'Ширина ленты': '12-16мм', 'Длина рукояток': '460мм', 'Вес': '2.4 кг', 'Тип скобы': 'Металлическая' },
+    description: 'Heavy duty sealer for serrated PET seals.',
+    description_ru: 'Усиленные клещи для скрепления ПЭТ ленты скобой.',
+    fullDescription: 'Professional long-handled sealer providing maximum leverage for crushing serrated seals onto PET strapping. Essential for heavy loads where seal integrity is critical.',
+    fullDescription_ru: 'Профессиональные клещи с длинными рукоятками для максимального усилия при зажиме скобы. Необходимы для тяжелых грузов, где важна надежность соединения.',
+    price: 7200.00, // RUB
+    specs: { 'Strap Width': '15-16mm', 'Handle Length': '460mm', 'Weight': '2.4 kg', 'Seal Type': 'Serrated' },
+    specs_ru: { 'Ширина ленты': '15-16мм', 'Длина рукояток': '460мм', 'Вес': '2.4 кг', 'Тип скобы': 'С насечкой' },
     inStock: true
   },
   {
     id: 'tool-manual-h42',
-    name: 'Combined Tool H-42',
+    name: 'Combined Tool H-42 (12-16mm)',
     name_ru: 'Комбинированное устройство H-42',
     category: 'Tools',
     subcategory: 'manual',
     imageUrl: 'https://images.unsplash.com/photo-1540104539488-92a51bbc0410?auto=format&fit=crop&w=800&q=80',
-    description: '3-in-1 tool for PP strap.',
-    description_ru: 'Устройство 3-в-1 для ПП ленты.',
-    fullDescription: 'Manual combination tool that tensions, seals, and cuts polypropylene strap. Uses standard metal seals. Efficient for flat surface packing.',
-    fullDescription_ru: 'Ручное комбинированное устройство. Натягивает, скрепляет скобой и обрезает ленту. Работает с ПП лентой 12-16мм.',
-    price: 14500.00,
-    specs: { 'Strap Type': 'PP', 'Width': '12-16mm', 'Function': 'Tension/Seal/Cut' },
-    specs_ru: { 'Тип ленты': 'ПП', 'Ширина': '12-16мм', 'Функции': 'Натяжение/Скрепление/Обрезание' },
+    description: '3-in-1 tool for PP strapping: tension, seal, cut.',
+    description_ru: '3-в-1 для ПП ленты: натяжение, скрепление, обрезка.',
+    fullDescription: 'Efficient manual combination tool that tensions, seals, and cuts polypropylene strap. Uses standard metal seals. Ideal for flat surface packing.',
+    fullDescription_ru: 'Эффективное ручное устройство, которое натягивает, скрепляет скобой и обрезает полипропиленовую ленту. Идеально для упаковки на плоских поверхностях.',
+    price: 14500.00, // RUB
+    specs: { 'Strap Type': 'PP', 'Width': '12-16mm', 'Max Thickness': '0.8mm', 'Weight': '3.2 kg' },
+    specs_ru: { 'Тип ленты': 'ПП', 'Ширина': '12-16мм', 'Макс. толщина': '0.8мм', 'Вес': '3.2 кг' },
     inStock: true
   },
   {
     id: 'tool-dispenser-h83',
     name: 'Dispenser Cart H-83',
-    name_ru: 'Ленторазмотчик H-83',
+    name_ru: 'Диспенсер H-83 (Ленторазмотчик)',
     category: 'Tools',
     subcategory: 'manual',
     imageUrl: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80',
-    description: 'Mobile cart for strap coils.',
-    description_ru: 'Тележка-размотчик для ленты.',
-    fullDescription: 'Robust steel cart designed for standard 406mm core coils. Features rubber wheels for mobility and a tool tray.',
-    fullDescription_ru: 'Надежный ленторазмотчик для бухт с диаметром шпули 406мм. Оснащена большими резиновыми колесами, тормозом от разматывания и ящиком для инструмента.',
-    price: 9500.00,
-    specs: { 'Core Size': '406mm', 'Wheels': 'Yes', 'Tool Tray': 'Yes' },
-    specs_ru: { 'Диаметр шпули': '406мм', 'Колеса': 'Есть', 'Ящик для инструмента': 'Есть' },
+    description: 'Mobile cart for PET/PP coils with tool box.',
+    description_ru: 'Тележка для размотки бухт ПЭТ/ПП с ящиком для инструмента.',
+    fullDescription: 'Robust steel cart designed for standard 406mm core coils. Features large rubber wheels for warehouse mobility, a built-in brake to prevent unraveling, and a spacious tray for tools and seals.',
+    fullDescription_ru: 'Надежная стальная тележка для бухт с посадочным диаметром 406мм. Оснащена большими резиновыми колесами, тормозом от разматывания и ящиком для инструмента.',
+    price: 9500.00, // RUB
+    specs: { 'Core Size': '406mm', 'Wheels': 'Rubber', 'Brake': 'Included', 'Material': 'Steel' },
+    specs_ru: { 'Посадочный диаметр': '406мм', 'Колеса': 'Резина', 'Тормоз': 'Есть', 'Материал': 'Сталь' },
     inStock: true
   },
 

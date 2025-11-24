@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import { ProductCategory } from '../types';
@@ -26,6 +26,17 @@ const ProductCatalog: React.FC = () => {
   const [activeSubCategory, setActiveSubCategory] = useState<string>(
     (location.state as any)?.subcategory || 'all'
   );
+
+  // Effect to update state when location state changes (e.g. clicking footer links)
+  useEffect(() => {
+    const state = location.state as { category?: ProductCategory | 'All'; subcategory?: string } | null;
+    if (state?.category) {
+      setActiveCategory(state.category);
+      // If a specific subcategory is passed, use it, otherwise reset to 'all' if changing main category
+      // or keep existing if just re-navigating to same category (though typically footer links implies reset)
+      setActiveSubCategory(state.subcategory || 'all');
+    }
+  }, [location.state]);
 
   const filteredProducts = PRODUCTS.filter(p => {
     const catMatch = activeCategory === 'All' || p.category === activeCategory;

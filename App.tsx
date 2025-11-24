@@ -262,12 +262,13 @@ const Layout: React.FC = () => {
             </div>
             
             <div>
-                <h4 className="font-bold text-white mb-6 uppercase tracking-widest text-xs">{t('nav.products')}</h4>
+                <Link to="/catalog" className="font-bold text-white mb-6 uppercase tracking-widest text-xs block hover:text-orange-500 transition-colors">{t('nav.products')}</Link>
                 <ul className="space-y-3">
-                    <li><Link to="/catalog" className="hover:text-orange-500 transition-colors">{t('cat.pet')}</Link></li>
-                    <li><Link to="/catalog" className="hover:text-orange-500 transition-colors">{t('cat.film')}</Link></li>
-                    <li><Link to="/catalog" className="hover:text-orange-500 transition-colors">{t('cat.boxes')}</Link></li>
-                    <li><Link to="/catalog" className="hover:text-orange-500 transition-colors">{t('cat.tools')}</Link></li>
+                    <li><Link to="/catalog" state={{ category: 'PET Strap' }} className="hover:text-orange-500 transition-colors">{t('cat.pet')}</Link></li>
+                    <li><Link to="/catalog" state={{ category: 'Stretch Film' }} className="hover:text-orange-500 transition-colors">{t('cat.film')}</Link></li>
+                    <li><Link to="/catalog" state={{ category: 'Boxes' }} className="hover:text-orange-500 transition-colors">{t('cat.boxes')}</Link></li>
+                    <li><Link to="/catalog" state={{ category: 'Tools' }} className="hover:text-orange-500 transition-colors">{t('cat.tools')}</Link></li>
+                    <li><Link to="/catalog" state={{ category: 'Consumables' }} className="hover:text-orange-500 transition-colors">{t('cat.consumables')}</Link></li>
                 </ul>
             </div>
 
@@ -286,7 +287,7 @@ const Layout: React.FC = () => {
                  <ul className="space-y-3">
                     <li className="flex items-start gap-3">
                         <Phone size={16} className="mt-1 text-emerald-600" />
-                        <span>1-800-PET-STRAP<br/>+7 (383) 123-45-67</span>
+                        <span>+7 (383) 123-45-67</span>
                     </li>
                     <li className="flex items-start gap-3">
                         <Mail size={16} className="mt-1 text-emerald-600" />
@@ -294,7 +295,7 @@ const Layout: React.FC = () => {
                     </li>
                     <li className="flex items-start gap-3">
                         <MapPin size={16} className="mt-1 text-emerald-600" />
-                        <span>Novosibirsk, Russia<br/>Mary, Turkmenistan</span>
+                        <span>{t('footer.address_ru')}<br/>{t('footer.address_tm')}</span>
                     </li>
                  </ul>
             </div>

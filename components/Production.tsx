@@ -1,19 +1,61 @@
 import React from 'react';
-import { ArrowDown } from 'lucide-react';
+import { 
+  Recycle, 
+  Scissors, 
+  Droplets, 
+  Wind, 
+  Thermometer, 
+  Ruler, 
+  Maximize2, 
+  Fingerprint, 
+  Snowflake, 
+  Disc, 
+  Microscope, 
+  Truck,
+  ChevronRight
+} from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const Step: React.FC<{ number: string; title: string; desc: string }> = ({ number, title, desc }) => (
-  <div className="flex flex-col items-center text-center max-w-xs mx-auto relative z-10">
-    <div className="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold border-4 border-white shadow-lg mb-4">
+const Step: React.FC<{ number: string; title: string; desc: string; icon: React.ReactNode; isLast?: boolean }> = ({ number, title, desc, icon, isLast }) => (
+  <div className="bg-white p-6 rounded shadow-sm border border-slate-100 relative group hover:shadow-md transition-shadow h-full flex flex-col overflow-hidden">
+    {/* Large Watermark Number - Made more visible as requested */}
+    <div className="absolute top-0 right-4 text-6xl font-black text-slate-200 group-hover:text-orange-100 transition-colors select-none z-0 opacity-80">
         {number}
     </div>
-    <h3 className="text-lg font-bold text-slate-800 mb-2">{title}</h3>
-    <p className="text-sm text-slate-500">{desc}</p>
+    
+    <div className="mb-4 text-emerald-700 p-3 bg-emerald-50 rounded-full w-fit group-hover:bg-orange-600 group-hover:text-white transition-colors relative z-10">
+        {icon}
+    </div>
+    
+    <h3 className="text-lg font-bold text-slate-800 mb-2 relative z-10">{title}</h3>
+    <p className="text-sm text-slate-600 leading-relaxed relative z-10 flex-grow">{desc}</p>
+
+    {/* Arrow indicator for flow */}
+    {!isLast && (
+      <div className="absolute bottom-4 right-4 text-emerald-200 group-hover:text-orange-400 transition-colors">
+        <ChevronRight size={28} strokeWidth={3} />
+      </div>
+    )}
   </div>
 );
 
 const Production: React.FC = () => {
   const { t } = useLanguage();
+
+  const steps = [
+    { id: '1', icon: <Recycle size={24}/> },
+    { id: '2', icon: <Scissors size={24}/> },
+    { id: '3', icon: <Droplets size={24}/> },
+    { id: '4', icon: <Wind size={24}/> },
+    { id: '5', icon: <Thermometer size={24}/> },
+    { id: '6', icon: <Ruler size={24}/> },
+    { id: '7', icon: <Maximize2 size={24}/> },
+    { id: '8', icon: <Fingerprint size={24}/> },
+    { id: '9', icon: <Snowflake size={24}/> },
+    { id: '10', icon: <Disc size={24}/> },
+    { id: '11', icon: <Microscope size={24}/> },
+    { id: '12', icon: <Truck size={24}/> },
+  ];
 
   return (
     <div className="animate-fade-in">
@@ -27,59 +69,44 @@ const Production: React.FC = () => {
             </div>
        </div>
 
-       <div className="container mx-auto px-4 py-16">
-           <div className="relative">
-               {/* Connecting Line */}
-               <div className="hidden md:block absolute top-8 left-0 right-0 h-1 bg-slate-200 -z-0"></div>
-               
-               <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-4">
+       <div className="container mx-auto px-4 py-16 bg-slate-50">
+           <div className="text-center mb-12">
+               <h2 className="text-3xl font-bold text-slate-900">{t('prod.process_title')}</h2>
+               <div className="w-20 h-1 bg-orange-500 mx-auto mt-4 rounded"></div>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+               {steps.map((step, index) => (
                    <Step 
-                      number="01" 
-                      title={t('prod.step1')} 
-                      desc={t('prod.step1_desc')}
+                      key={step.id}
+                      number={step.id} 
+                      icon={step.icon}
+                      title={t(`prod.step${step.id}_title` as any)} 
+                      desc={t(`prod.step${step.id}_desc` as any)}
+                      isLast={index === steps.length - 1}
                    />
-                   <Step 
-                      number="02" 
-                      title={t('prod.step2')} 
-                      desc={t('prod.step2_desc')}
-                   />
-                   <Step 
-                      number="03" 
-                      title={t('prod.step3')} 
-                      desc={t('prod.step3_desc')}
-                   />
-                   <Step 
-                      number="04" 
-                      title={t('prod.step4')} 
-                      desc={t('prod.step4_desc')}
-                   />
-               </div>
+               ))}
            </div>
        </div>
 
-       <div className="bg-slate-50 py-16">
+       <div className="bg-white py-16">
            <div className="container mx-auto px-4">
                <div className="grid md:grid-cols-2 gap-12 items-center">
                    <img 
                       src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" 
                       alt="Quality Lab" 
-                      className="rounded-lg shadow-xl"
+                      className="rounded-lg shadow-xl border border-slate-100"
                    />
                    <div className="space-y-6">
                        <h2 className="text-3xl font-bold text-slate-900">{t('prod.lab_title')}</h2>
-                       <p className="text-slate-600">
+                       <p className="text-slate-600 text-lg leading-relaxed">
                            {t('prod.lab_desc')}
                        </p>
-                       <ul className="space-y-3">
-                           {[
-                               "Break Strength Testing (ASTM D3950)",
-                               "Elongation Recovery Analysis",
-                               "Camber and Curl Measurement",
-                               "Joint Efficiency Testing"
-                           ].map((item, i) => (
-                               <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
+                       <ul className="space-y-4">
+                           {[1, 2, 3, 4].map((num) => (
+                               <li key={num} className="flex items-center gap-3 text-slate-700 font-medium bg-slate-50 p-3 rounded border border-slate-100">
                                    <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                                   {item}
+                                   {t(`prod.lab_test${num}` as any)}
                                </li>
                            ))}
                        </ul>
