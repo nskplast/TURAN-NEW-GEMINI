@@ -44,7 +44,7 @@ const About: React.FC = () => {
                     className="rounded shadow-2xl"
                  />
                  <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded shadow-lg max-w-xs border-t-4 border-emerald-600 hidden md:block">
-                     <p className="font-bold text-slate-800 italic">"We control quality from the raw flake to the final coil."</p>
+                     <p className="font-bold text-slate-800 italic">"{t('about.quote')}"</p>
                  </div>
             </div>
         </div>
@@ -58,27 +58,27 @@ const About: React.FC = () => {
                       <div className="w-12 h-12 bg-emerald-100 text-emerald-700 flex items-center justify-center rounded mb-4">
                           <Recycle size={24} />
                       </div>
-                      <h3 className="text-xl font-bold mb-2">Sustainability</h3>
+                      <h3 className="text-xl font-bold mb-2">{t('about.val1_title')}</h3>
                       <p className="text-slate-600 text-sm">
-                          Our "Bottle-to-Strap" technology reduces plastic waste. Our PET strap is 100% recyclable.
+                          {t('about.val1_desc')}
                       </p>
                   </div>
                   <div className="bg-white p-8 rounded shadow-sm hover:shadow-md transition-shadow">
                       <div className="w-12 h-12 bg-orange-100 text-orange-700 flex items-center justify-center rounded mb-4">
                           <ShieldCheck size={24} />
                       </div>
-                      <h3 className="text-xl font-bold mb-2">Quality Control</h3>
+                      <h3 className="text-xl font-bold mb-2">{t('about.val2_title')}</h3>
                       <p className="text-slate-600 text-sm">
-                          Every batch undergoes tensile strength, elongation, and split resistance testing in our on-site laboratory.
+                          {t('about.val2_desc')}
                       </p>
                   </div>
                   <div className="bg-white p-8 rounded shadow-sm hover:shadow-md transition-shadow">
                       <div className="w-12 h-12 bg-blue-100 text-blue-700 flex items-center justify-center rounded mb-4">
                           <TrendingUp size={24} />
                       </div>
-                      <h3 className="text-xl font-bold mb-2">Reliability</h3>
+                      <h3 className="text-xl font-bold mb-2">{t('about.val3_title')}</h3>
                       <p className="text-slate-600 text-sm">
-                          With warehouses in Novosibirsk, we guarantee stable supply chains for our Russian and European partners.
+                          {t('about.val3_desc')}
                       </p>
                   </div>
               </div>
