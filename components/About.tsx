@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Globe, ShieldCheck, Recycle, TrendingUp } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -17,34 +18,50 @@ const About: React.FC = () => {
 
       {/* Story Section */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
                 <h2 className="text-3xl font-bold text-slate-900">{t('about.h2')}</h2>
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed text-justify">
                     {t('about.p1')}
                 </p>
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed text-justify">
                     {t('about.p2')}
                 </p>
-                <div className="grid grid-cols-2 gap-6 pt-4">
+                 <p className="text-slate-600 leading-relaxed text-justify">
+                    {t('about.p3')}
+                </p>
+                <div className="grid grid-cols-2 gap-6 pt-6">
                     <div className="border-l-4 border-orange-600 pl-4">
                         <span className="block text-3xl font-black text-slate-900">2015</span>
                         <span className="text-sm text-slate-500">{t('about.founded')}</span>
                     </div>
                     <div className="border-l-4 border-emerald-600 pl-4">
-                        <span className="block text-3xl font-black text-slate-900">500T+</span>
+                        <span className="block text-3xl font-black text-slate-900">2023</span>
                         <span className="text-sm text-slate-500">{t('about.output')}</span>
                     </div>
                 </div>
             </div>
-            <div className="relative">
-                 <img 
-                    src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=800&q=80" 
-                    alt="Extrusion Line" 
-                    className="rounded shadow-2xl"
-                 />
-                 <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded shadow-lg max-w-xs border-t-4 border-emerald-600 hidden md:block">
-                     <p className="font-bold text-slate-800 italic">"{t('about.quote')}"</p>
+            
+            <div className="grid grid-rows-2 gap-4 h-full">
+                 <div className="relative h-64 md:h-auto overflow-hidden rounded-lg shadow-lg group">
+                    <img 
+                        src="https://images.unsplash.com/photo-1565610222536-ef125c59da2e?auto=format&fit=crop&w=800&q=80" 
+                        alt="Factory Exterior" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute bottom-0 left-0 bg-gradient-to-t from-slate-900/80 to-transparent p-4 w-full">
+                         <span className="text-white text-xs font-bold uppercase tracking-wider">Production Facility (Exterior)</span>
+                    </div>
+                 </div>
+                 <div className="relative h-64 md:h-auto overflow-hidden rounded-lg shadow-lg group">
+                    <img 
+                        src="https://images.unsplash.com/photo-1581093588402-fdd11a02777e?auto=format&fit=crop&w=800&q=80" 
+                        alt="Production Line Interior" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                     <div className="absolute bottom-0 left-0 bg-gradient-to-t from-slate-900/80 to-transparent p-4 w-full">
+                         <span className="text-white text-xs font-bold uppercase tracking-wider">Production Line (Interior)</span>
+                    </div>
                  </div>
             </div>
         </div>

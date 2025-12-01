@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../data';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -16,7 +18,7 @@ const Blog: React.FC = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
             {BLOG_POSTS.map((post) => (
-                <article key={post.id} className="flex flex-col group cursor-pointer">
+                <Link to={`/blog/${post.id}`} key={post.id} className="flex flex-col group cursor-pointer">
                     <div className="aspect-video overflow-hidden rounded-sm mb-4 relative">
                         <img 
                             src={post.imageUrl} 
@@ -37,7 +39,7 @@ const Blog: React.FC = () => {
                     <div className="flex items-center text-orange-600 font-bold text-sm mt-auto">
                         {t('blog.read_more')} <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform"/>
                     </div>
-                </article>
+                </Link>
             ))}
         </div>
       </div>

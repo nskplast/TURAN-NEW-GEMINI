@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { Menu, X, Phone, Mail, MapPin, Facebook, Linkedin, Globe, ChevronDown } from 'lucide-react';
@@ -11,6 +12,7 @@ import About from './components/About';
 import Production from './components/Production';
 import Contact from './components/Contact';
 import Blog from './components/Blog';
+import BlogDetail from './components/BlogDetail';
 import AICareAssistant from './components/AICareAssistant';
 
 // Scroll to top on route change
@@ -234,6 +236,7 @@ const Layout: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

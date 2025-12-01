@@ -1,4 +1,5 @@
 
+
 import { Product, BlogPost } from './types';
 
 export const PRODUCTS: Product[] = [
@@ -1250,7 +1251,7 @@ export const PRODUCTS: Product[] = [
     price: 1750.00, // Estimated
     specs: { 'Strap Width': '15-16mm', 'Length': '30mm', 'Thickness': '0.9mm', 'Quantity': '1000 pcs', 'Weight': '9.1 kg' },
     specs_ru: { 'Для ленты': '15-16мм', 'Длина замка': '30мм', 'Толщина': '0.9мм', 'Количество': '1000 шт', 'Вес упаковки': '9.1 кг' },
-    inStock: true
+    inStock: true 
   },
   {
     id: 'seal-pet13',
@@ -1271,13 +1272,73 @@ export const PRODUCTS: Product[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: '1',
-    title: 'New Production Line Launched in Mary',
-    title_ru: 'Запуск новой линии в г. Мары',
+    title: 'Launch of PET Strap Production Line',
+    title_ru: 'Запуск линии по производству ПЭТ ленты',
     date: 'Oct 15, 2023',
     date_ru: '15 Окт 2023',
     excerpt: 'We have successfully commissioned a third extrusion line, increasing our monthly output by 40%.',
     excerpt_ru: 'Мы успешно запустили третью экструзионную линию, увеличив ежемесячный объем выпуска на 40%.',
-    imageUrl: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=800&q=80',
+    content: `
+      <p class="mb-4">TuranPET proudly announces the launch of its first PET strap production line in Mary. Previously, the company specialized exclusively in recycling PET bottles into PET flakes. This strategic decision to manufacture the final product led to the acquisition of a modern extrusion line.</p>
+      <h3 class="text-xl font-bold mb-2">Production Highlights</h3>
+      <ul class="list-disc pl-5 mb-6 space-y-2">
+        <li><strong>First Line:</strong> This marks the beginning of PET strap manufacturing for our company.</li>
+        <li><strong>Capacity:</strong> The line has a monthly production capacity of 120 tons.</li>
+        <li><strong>Specifications:</strong> Core sizes produced are 12-19mm in width and 0.6-1.27mm in thickness.</li>
+        <li><strong>Capability:</strong> The line is capable of producing straps from 9mm to 25mm wide and 0.5mm to 1.5mm thick.</li>
+      </ul>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between text-center">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Milestone</span>
+              <div class="text-xl font-black text-emerald-600 my-2">1st Line</div>
+              <span class="text-xs text-slate-600 font-medium">Start of Production</span>
+          </div>
+          <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between text-center">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Capacity</span>
+              <div class="text-xl font-black text-orange-600 my-2">120 Tons</div>
+              <span class="text-xs text-slate-600 font-medium">Per Month</span>
+          </div>
+           <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between text-center">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Capability</span>
+              <div class="text-xl font-black text-blue-600 my-2">9-25mm</div>
+              <span class="text-xs text-slate-600 font-medium">Width Range</span>
+          </div>
+      </div>
+
+      <p>Product quality is strictly controlled by our in-house laboratory. Having our own PET flake production ensures the stability and consistency of our strap quality.</p>
+    `,
+    content_ru: `
+      <p class="mb-4">TuranPET объявляет о запуске своей первой линии по производству ПЭТ ленты в г. Мары. Ранее компания специализировалась исключительно на переработке ПЭТ бутылок в ПЭТ флекс (хлопья). Стратегическое решение производить конечный продукт привело к приобретению и установке современной экструзионной линии.</p>
+      <h3 class="text-xl font-bold mb-2">Ключевые моменты</h3>
+      <ul class="list-disc pl-5 mb-6 space-y-2">
+        <li><strong>Первая линия:</strong> Это событие знаменует начало эры производства ПЭТ ленты в нашей компании.</li>
+        <li><strong>Мощность:</strong> Производственная мощность линии составляет 120 тонн в месяц.</li>
+        <li><strong>Спецификации:</strong> Основные выпускаемые типоразмеры: ширина 12-19 мм, толщина 0,6-1,27 мм.</li>
+        <li><strong>Возможности:</strong> Линия позволяет производить ленту шириной от 9 до 25 мм и толщиной от 0,5 до 1,5 мм.</li>
+      </ul>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between text-center">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Событие</span>
+              <div class="text-xl font-black text-emerald-600 my-2">1-я Линия</div>
+              <span class="text-xs text-slate-600 font-medium">Начало производства</span>
+          </div>
+          <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between text-center">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Мощность</span>
+              <div class="text-xl font-black text-orange-600 my-2">120 Тонн</div>
+              <span class="text-xs text-slate-600 font-medium">В месяц</span>
+          </div>
+           <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-between text-center">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Возможности</span>
+              <div class="text-xl font-black text-blue-600 my-2">9-25мм</div>
+              <span class="text-xs text-slate-600 font-medium">Диапазон ширины</span>
+          </div>
+      </div>
+
+      <p>Качество продукции строго контролируется собственной лабораторией. Наличие собственного производства ПЭТ флекса является гарантом стабильности качества нашей ленты.</p>
+    `
   },
   {
     id: '2',
@@ -1287,16 +1348,414 @@ export const BLOG_POSTS: BlogPost[] = [
     date_ru: '02 Ноя 2023',
     excerpt: 'Polyester strapping offers higher shock absorption and safety compared to traditional steel banding.',
     excerpt_ru: 'Полиэстеровая лента обеспечивает лучшую амортизацию ударов и безопасность по сравнению со стальной.',
-    imageUrl: 'https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&w=800&q=80',
+    content: `
+      <p class="mb-4">For decades, steel strapping was the gold standard for heavy loads. However, advances in polyester (PET) extrusion technology have made PET strap a superior alternative for 90% of industrial applications, including brick, lumber, and metal sheets.</p>
+      
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left text-sm border-collapse">
+            <thead>
+                <tr class="bg-slate-900 text-white">
+                    <th class="p-3">Feature</th>
+                    <th class="p-3">PET Strap</th>
+                    <th class="p-3">Steel Strap</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+                <tr class="bg-emerald-50">
+                    <td class="p-3 font-bold">Elasticity</td>
+                    <td class="p-3">High (Absorbs shock)</td>
+                    <td class="p-3">Low (Snaps under shock)</td>
+                </tr>
+                <tr>
+                    <td class="p-3 font-bold">Safety</td>
+                    <td class="p-3">No sharp edges, safe recoil</td>
+                    <td class="p-3">Sharp edges, dangerous recoil</td>
+                </tr>
+                <tr class="bg-emerald-50">
+                    <td class="p-3 font-bold">Weight</td>
+                    <td class="p-3">Lightweight (Easy handling)</td>
+                    <td class="p-3">Heavy (Risk of injury)</td>
+                </tr>
+                <tr>
+                    <td class="p-3 font-bold">Corrosion</td>
+                    <td class="p-3">Rust-proof</td>
+                    <td class="p-3">Rusts, stains cargo</td>
+                </tr>
+                 <tr class="bg-emerald-50">
+                    <td class="p-3 font-bold">Cost</td>
+                    <td class="p-3 text-emerald-700 font-bold">$$ (Economical)</td>
+                    <td class="p-3 text-red-700 font-bold">$$$$ (Expensive)</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-xl font-bold mb-2">The "Rubber Band" Effect</h3>
+      <p class="mb-4">Unlike steel, PET has "elongation recovery". If your load settles or shifts during transport, PET strap contracts to keep the tension tight. Steel strap simply becomes loose, risking load failure.</p>
+      
+      <p>Making the switch reduces injury risk for your workers and lowers material costs by up to 50%.</p>
+    `,
+    content_ru: `
+      <p class="mb-4">На протяжении десятилетий стальная лента была золотым стандартом для тяжелых грузов. Однако достижения в технологии экструзии полиэстера (ПЭТ) сделали ПЭТ-ленту превосходной альтернативой для 90% промышленных применений, включая кирпич, пиломатериалы и металлические листы.</p>
+      
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left text-sm border-collapse">
+            <thead>
+                <tr class="bg-slate-900 text-white">
+                    <th class="p-3">Характеристика</th>
+                    <th class="p-3">ПЭТ Лента</th>
+                    <th class="p-3">Стальная Лента</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+                <tr class="bg-emerald-50">
+                    <td class="p-3 font-bold">Эластичность</td>
+                    <td class="p-3">Высокая (Гасит удары)</td>
+                    <td class="p-3">Низкая (Рвется при ударе)</td>
+                </tr>
+                <tr>
+                    <td class="p-3 font-bold">Безопасность</td>
+                    <td class="p-3">Нет острых краев, безопасная отдача</td>
+                    <td class="p-3">Острые края, опасная отдача</td>
+                </tr>
+                <tr class="bg-emerald-50">
+                    <td class="p-3 font-bold">Вес</td>
+                    <td class="p-3">Легкая (Удобно работать)</td>
+                    <td class="p-3">Тяжелая (Риск травм)</td>
+                </tr>
+                <tr>
+                    <td class="p-3 font-bold">Коррозия</td>
+                    <td class="p-3">Не ржавеет</td>
+                    <td class="p-3">Ржавеет, пачкает груз</td>
+                </tr>
+                 <tr class="bg-emerald-50">
+                    <td class="p-3 font-bold">Стоимость</td>
+                    <td class="p-3 text-emerald-700 font-bold">$$ (Экономично)</td>
+                    <td class="p-3 text-red-700 font-bold">$$$$ (Дорого)</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-xl font-bold mb-2">Эффект "Резинки"</h3>
+      <p class="mb-4">В отличие от стали, у ПЭТ есть "возвратное удлинение". Если ваш груз усаживается или смещается во время транспортировки, ПЭТ-лента сжимается, сохраняя натяжение. Стальная лента просто провисает, создавая риск аварии.</p>
+      
+      <p>Переход на ПЭТ снижает риск травм для ваших сотрудников и сокращает затраты на материалы до 50%.</p>
+    `
   },
   {
     id: '3',
-    title: 'Exhibition Results: RosUpack 2023',
-    title_ru: 'Итоги выставки RosUpack 2023',
+    title: 'Production Volume Increase',
+    title_ru: 'Наращивание объемов производства',
     date: 'Dec 10, 2023',
     date_ru: '10 Дек 2023',
-    excerpt: 'TuranPET showcased its new embossed strap technology at the largest packaging expo in Russia.',
-    excerpt_ru: 'TuranPET представил новую технологию рифленой ленты на крупнейшей выставке упаковки в России.',
-    imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80'
+    excerpt: 'In 2025, the company reached a monthly production volume of 120 tons of finished PET strap.',
+    excerpt_ru: 'В 2025 компания вышла на ежемесячный объем в 120 тонн готовой продукции ПЭТ ленты в месяц',
+    imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80',
+    content: `
+  <p class="mb-4">TuranPET continues its steady growth trajectory. Following the optimization of our existing lines and the implementation of 24/7 automated shifts, we are proud to report a record-breaking production milestone.</p>
+  
+  <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm mb-8">
+    <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+        Production Growth Trajectory
+        <span class="text-xs font-normal bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Verified Data</span>
+    </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 2023 Card -->
+        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-slate-300">
+            <div class="text-slate-500 text-sm font-bold mb-1">2023 (Baseline)</div>
+            <div class="flex items-end gap-2">
+                <span class="text-3xl font-black text-slate-700">60</span>
+                <span class="text-sm text-slate-400 mb-1">tons/mo</span>
+            </div>
+            <div class="mt-3 h-1 w-full bg-slate-100 rounded overflow-hidden">
+                <div class="h-full bg-slate-300 w-[50%]"></div>
+            </div>
+        </div>
+
+        <!-- 2024 Card -->
+        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-400">
+            <div class="flex justify-between items-center mb-1">
+                <div class="text-slate-500 text-sm font-bold">2024</div>
+                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">+50%</span>
+            </div>
+            <div class="flex items-end gap-2">
+                <span class="text-3xl font-black text-slate-800">90</span>
+                <span class="text-sm text-slate-400 mb-1">tons/mo</span>
+            </div>
+             <div class="mt-3 h-1 w-full bg-slate-100 rounded overflow-hidden">
+                <div class="h-full bg-blue-400 w-[75%]"></div>
+            </div>
+        </div>
+
+        <!-- 2025 Card -->
+        <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-emerald-500 relative overflow-hidden">
+             <div class="absolute top-0 right-0 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl">CURRENT</div>
+            <div class="flex justify-between items-center mb-1">
+                <div class="text-slate-500 text-sm font-bold">2025</div>
+                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">+33%</span>
+            </div>
+            <div class="flex items-end gap-2">
+                <span class="text-4xl font-black text-emerald-700">120</span>
+                <span class="text-sm text-slate-400 mb-1">tons/mo</span>
+            </div>
+             <div class="mt-3 h-1 w-full bg-slate-100 rounded overflow-hidden">
+                <div class="h-full bg-emerald-500 w-full"></div>
+            </div>
+            <p class="text-xs text-emerald-600 mt-2 font-medium flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Target Achieved
+            </p>
+        </div>
+    </div>
+    
+    <div class="mt-6 p-4 bg-white rounded border border-slate-100">
+        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Production Efficiency</div>
+        <div class="flex items-center gap-4">
+             <div class="flex-1">
+                 <div class="flex justify-between text-xs mb-1">
+                     <span>Machine Utilization</span>
+                     <span class="font-bold">92%</span>
+                 </div>
+                 <div class="w-full bg-slate-100 rounded-full h-2">
+                     <div class="bg-slate-800 h-2 rounded-full" style="width: 92%"></div>
+                 </div>
+             </div>
+             <div class="w-px h-8 bg-slate-200"></div>
+             <div class="flex-1">
+                 <div class="flex justify-between text-xs mb-1">
+                     <span>Scrap Rate</span>
+                     <span class="font-bold text-emerald-600">&lt; 1.5%</span>
+                 </div>
+                 <div class="w-full bg-slate-100 rounded-full h-2">
+                     <div class="bg-emerald-500 h-2 rounded-full" style="width: 98%"></div>
+                 </div>
+             </div>
+        </div>
+    </div>
+  </div>
+
+  <p class="mb-4">Reaching <strong>120 tons per month</strong> signifies our transition from a regional supplier to a major player in the CIS industrial packaging sector. This volume allows us to:</p>
+  <ul class="list-disc pl-5 space-y-2">
+    <li>Guarantee stock availability for all standard sizes (12mm - 19mm).</li>
+    <li>Reduce lead times for custom orders.</li>
+    <li>Maintain price stability despite raw material fluctuations.</li>
+  </ul>
+`,
+    content_ru: `
+  <p class="mb-4">TuranPET продолжает траекторию устойчивого роста. Вслед за оптимизацией наших существующих линий и внедрением круглосуточных автоматизированных смен, мы с гордостью сообщаем о рекордном производственном рубеже.</p>
+  
+  <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm mb-8">
+    <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+        Динамика Роста Производства
+        <span class="text-xs font-normal bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Проверенные данные</span>
+    </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 2023 Card -->
+        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-slate-300">
+            <div class="text-slate-500 text-sm font-bold mb-1">2023 (Старт)</div>
+            <div class="flex items-end gap-2">
+                <span class="text-3xl font-black text-slate-700">60</span>
+                <span class="text-sm text-slate-400 mb-1">тонн/мес</span>
+            </div>
+            <div class="mt-3 h-1 w-full bg-slate-100 rounded overflow-hidden">
+                <div class="h-full bg-slate-300 w-[50%]"></div>
+            </div>
+        </div>
+
+        <!-- 2024 Card -->
+        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-400">
+            <div class="flex justify-between items-center mb-1">
+                <div class="text-slate-500 text-sm font-bold">2024</div>
+                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">+50%</span>
+            </div>
+            <div class="flex items-end gap-2">
+                <span class="text-3xl font-black text-slate-800">90</span>
+                <span class="text-sm text-slate-400 mb-1">тонн/мес</span>
+            </div>
+             <div class="mt-3 h-1 w-full bg-slate-100 rounded overflow-hidden">
+                <div class="h-full bg-blue-400 w-[75%]"></div>
+            </div>
+        </div>
+
+        <!-- 2025 Card -->
+        <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-emerald-500 relative overflow-hidden">
+             <div class="absolute top-0 right-0 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl">ТЕКУЩИЙ</div>
+            <div class="flex justify-between items-center mb-1">
+                <div class="text-slate-500 text-sm font-bold">2025</div>
+                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">+33%</span>
+            </div>
+            <div class="flex items-end gap-2">
+                <span class="text-4xl font-black text-emerald-700">120</span>
+                <span class="text-sm text-slate-400 mb-1">тонн/мес</span>
+            </div>
+             <div class="mt-3 h-1 w-full bg-slate-100 rounded overflow-hidden">
+                <div class="h-full bg-emerald-500 w-full"></div>
+            </div>
+            <p class="text-xs text-emerald-600 mt-2 font-medium flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Цель достигнута
+            </p>
+        </div>
+    </div>
+    
+    <div class="mt-6 p-4 bg-white rounded border border-slate-100">
+        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Эффективность производства</div>
+        <div class="flex items-center gap-4">
+             <div class="flex-1">
+                 <div class="flex justify-between text-xs mb-1">
+                     <span>Загрузка линий</span>
+                     <span class="font-bold">92%</span>
+                 </div>
+                 <div class="w-full bg-slate-100 rounded-full h-2">
+                     <div class="bg-slate-800 h-2 rounded-full" style="width: 92%"></div>
+                 </div>
+             </div>
+             <div class="w-px h-8 bg-slate-200"></div>
+             <div class="flex-1">
+                 <div class="flex justify-between text-xs mb-1">
+                     <span>Брак</span>
+                     <span class="font-bold text-emerald-600">&lt; 1.5%</span>
+                 </div>
+                 <div class="w-full bg-slate-100 rounded-full h-2">
+                     <div class="bg-emerald-500 h-2 rounded-full" style="width: 98%"></div>
+                 </div>
+             </div>
+        </div>
+    </div>
+  </div>
+
+  <p class="mb-4">Достижение показателя в <strong>120 тонн в месяц</strong> знаменует наш переход от регионального поставщика к статусу крупного игрока в секторе промышленной упаковки СНГ. Этот объем позволяет нам:</p>
+  <ul class="list-disc pl-5 space-y-2">
+    <li>Гарантировать наличие на складе всех стандартных типоразмеров (12мм - 19мм).</li>
+    <li>Сократить сроки выполнения индивидуальных заказов.</li>
+    <li>Поддерживать стабильность цен, несмотря на колебания стоимости сырья.</li>
+  </ul>
+`
+  },
+  {
+    id: '4',
+    title: 'Strategic Expansion Plan 2026',
+    title_ru: 'Стратегический план расширения 2026',
+    date: 'Jan 15, 2024',
+    date_ru: '15 Янв 2024',
+    excerpt: 'In 2026, we plan to expand production by another 240 tons. Total capacity will reach 360 tons per month.',
+    excerpt_ru: 'В 2026 году планируется расширение производства еще на 240 тонн. Общая мощность составит 360 тонн в месяц.',
+    imageUrl: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+    content: `
+      <p class="mb-4">Looking ahead, TuranPET has approved an ambitious investment plan for the fiscal year 2026. Responding to the increasing demand for high-quality recycled PET strapping in Russia and Central Asia, we are preparing for our largest expansion to date.</p>
+      
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-emerald-900 text-white p-6 rounded-lg shadow-xl">
+             <h4 class="text-lg font-bold mb-2 uppercase tracking-widest text-emerald-400">The Goal</h4>
+             <div class="text-5xl font-black mb-1">360 <span class="text-xl font-normal">tons/mo</span></div>
+             <p class="text-emerald-200 text-sm">Target Total Capacity by End of 2026</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg border border-slate-200">
+             <h4 class="font-bold text-slate-900 mb-4">Capacity Addition Breakdown</h4>
+             <div class="space-y-4">
+                 <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                        <span>Current (2025)</span>
+                        <span>120t</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                        <div class="bg-slate-400 h-2 rounded-full" style="width: 33%"></div>
+                    </div>
+                 </div>
+                 <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                        <span class="text-orange-600">Expansion (2026)</span>
+                        <span class="text-orange-600">+240t</span>
+                    </div>
+                    <div class="w-full bg-orange-100 rounded-full h-2">
+                        <div class="bg-orange-500 h-2 rounded-full" style="width: 66%"></div>
+                    </div>
+                 </div>
+                 <div class="pt-2 border-t border-slate-100">
+                    <div class="flex justify-between font-bold">
+                        <span>TOTAL</span>
+                        <span>360 Tons</span>
+                    </div>
+                 </div>
+             </div>
+          </div>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Key Objectives for 2026</h3>
+      <p class="mb-4">This massive scale-up involves the installation of two additional heavy-duty extrusion lines and the expansion of our warehouse facilities in Novosibirsk to handle the increased throughput.</p>
+      
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <li class="bg-slate-50 p-4 rounded border border-slate-100">
+            <strong>Market Dominance:</strong> Securing 15% of the regional market share for PET strapping.
+        </li>
+        <li class="bg-slate-50 p-4 rounded border border-slate-100">
+            <strong>New Formats:</strong> Introduction of "Jumbo" coils (80kg+) for fully automated industrial lines.
+        </li>
+        <li class="bg-slate-50 p-4 rounded border border-slate-100">
+            <strong>Logistics:</strong> Opening a new distribution hub in Moscow to serve Western Russia.
+        </li>
+      </ul>
+    `,
+    content_ru: `
+      <p class="mb-4">Глядя в будущее, TuranPET утвердил амбициозный инвестиционный план на 2026 финансовый год. Реагируя на растущий спрос на высококачественную ПЭТ-ленту из вторичного сырья в России и Центральной Азии, мы готовимся к нашему самому масштабному расширению.</p>
+      
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-emerald-900 text-white p-6 rounded-lg shadow-xl">
+             <h4 class="text-lg font-bold mb-2 uppercase tracking-widest text-emerald-400">Цель</h4>
+             <div class="text-5xl font-black mb-1">360 <span class="text-xl font-normal">тонн/мес</span></div>
+             <p class="text-emerald-200 text-sm">Плановая общая мощность к концу 2026</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg border border-slate-200">
+             <h4 class="font-bold text-slate-900 mb-4">Структура расширения мощностей</h4>
+             <div class="space-y-4">
+                 <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                        <span>Текущее (2025)</span>
+                        <span>120т</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                        <div class="bg-slate-400 h-2 rounded-full" style="width: 33%"></div>
+                    </div>
+                 </div>
+                 <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                        <span class="text-orange-600">Расширение (2026)</span>
+                        <span class="text-orange-600">+240т</span>
+                    </div>
+                    <div class="w-full bg-orange-100 rounded-full h-2">
+                        <div class="bg-orange-500 h-2 rounded-full" style="width: 66%"></div>
+                    </div>
+                 </div>
+                 <div class="pt-2 border-t border-slate-100">
+                    <div class="flex justify-between font-bold">
+                        <span>ИТОГО</span>
+                        <span>360 Тонн</span>
+                    </div>
+                 </div>
+             </div>
+          </div>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Ключевые задачи на 2026</h3>
+      <p class="mb-4">Это масштабное увеличение включает в себя установку двух дополнительных мощных экструзионных линий и расширение наших складских мощностей в Новосибирске для обработки возросшего грузопотока.</p>
+      
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <li class="bg-slate-50 p-4 rounded border border-slate-100">
+            <strong>Рыночная доля:</strong> Обеспечение 15% регионального рынка ПЭТ-ленты.
+        </li>
+        <li class="bg-slate-50 p-4 rounded border border-slate-100">
+            <strong>Новые форматы:</strong> Внедрение намотки "Джамбо" (80кг+) для полностью автоматизированных промышленных линий.
+        </li>
+        <li class="bg-slate-50 p-4 rounded border border-slate-100">
+            <strong>Логистика:</strong> Открытие нового распределительного центра в Москве для обслуживания Западной России.
+        </li>
+      </ul>
+    `
   }
 ];

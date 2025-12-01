@@ -33,6 +33,8 @@ export interface BlogPost {
   excerpt: string;
   excerpt_ru?: string;
   imageUrl: string;
+  content?: string;
+  content_ru?: string;
 }
 
 export interface StrapProduct {

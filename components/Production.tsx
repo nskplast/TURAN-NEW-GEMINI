@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   Recycle, 
@@ -12,7 +13,8 @@ import {
   Disc, 
   Microscope, 
   Truck,
-  ChevronRight
+  ChevronRight,
+  Factory
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -67,6 +69,23 @@ const Production: React.FC = () => {
                 <h1 className="text-4xl md:text-6xl font-black text-white mb-4">{t('prod.title')}</h1>
                 <p className="text-emerald-400 font-mono uppercase tracking-widest">{t('prod.subtitle')}</p>
             </div>
+       </div>
+
+       {/* Production Overview Section */}
+       <div className="bg-white py-16 border-b border-slate-100">
+          <div className="container mx-auto px-4">
+             <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-start">
+                 <div className="hidden md:flex bg-emerald-100 p-6 rounded-lg text-emerald-700 shrink-0">
+                    <Factory size={48} />
+                 </div>
+                 <div>
+                     <h2 className="text-3xl font-bold text-slate-900 mb-6">{t('prod.overview_title')}</h2>
+                     <p className="text-lg text-slate-600 leading-relaxed text-justify">
+                        {t('prod.overview_text')}
+                     </p>
+                 </div>
+             </div>
+          </div>
        </div>
 
        <div className="container mx-auto px-4 py-16 bg-slate-50">
